@@ -5,7 +5,7 @@ import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
 import numpy as np
 import cmocean
-
+import pdb
 
 def convert_pr_units(darray):
     """Convert kg m-2 s-1 to mm day-1.
@@ -24,6 +24,7 @@ def apply_mask(clim,file,realm):
     
     dset = xr.open_dataset(file)
     sftlf = dset['sftlf']
+    assert realm in ['land','ocean'],"""Valid realms are 'land' or 'ocean'"""
     if realm == 'land':
         clim_ocean = clim.where(sftlf<50)
     else:
